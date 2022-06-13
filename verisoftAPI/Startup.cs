@@ -1,7 +1,6 @@
-using Business.Abstracts;
-using Business.Concretes;
 using EntityFramework.Repository.Abstracts;
 using EntityFramework.Repository.Concretes;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -16,6 +15,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using verisoftAPI.Business.Abstracts;
+using verisoftAPI.Business.Concretes;
+using verisoftAPI.Validators;
 
 namespace verisoftAPI
 {
@@ -40,6 +42,8 @@ namespace verisoftAPI
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IProductService, ProductService>();
 
+            services.AddMvc()
+            .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ProductValidation>());
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

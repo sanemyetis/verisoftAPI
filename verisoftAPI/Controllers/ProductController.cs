@@ -1,6 +1,6 @@
-﻿using Business.Abstracts;
-using Domain.Entity;
+﻿using Domain.Entity;
 using Microsoft.AspNetCore.Mvc;
+using verisoftAPI.Business.Abstracts;
 
 namespace verisoftAPI.Controllers
 {
